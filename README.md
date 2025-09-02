@@ -120,5 +120,5 @@ Tests included:
 
 ## 👤 Author
 
-Michael Light Corpuz  
-[@lightningowl](https://github.com/your-username)
+Michael Allan "Light" Corpuz  
+[@lightningmikec](https://github.com/lightningmikec)
