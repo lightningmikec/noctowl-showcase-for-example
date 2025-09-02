@@ -6,16 +6,17 @@
 //
 
 import Testing
-import XCTest
 @testable import light_corpuz
 
 @MainActor
-final class PhotoDecodingTests: XCTestCase {
-    func testDecodingPhotosFromFixture() {
+struct PhotoDecodingTests {
+    @Test("Decoding from fixture should populate Photo correctly")
+    func decodeFixture() async throws {
         let photos = TestFixtures.loadPhotosFixture(named: "photos_fixture")
-        XCTAssertFalse(photos.isEmpty)
-        XCTAssertEqual(photos.first?.id, "123")
-        XCTAssertEqual(photos.first?.user?.username, "tester")
-        XCTAssertEqual(photos.first?.urls?.regular, "https://example.com/regular.jpg")
+
+        #expect(!photos.isEmpty)
+        #expect(photos.first?.id == "123")
+        #expect(photos.first?.user?.username == "tester")
+        #expect(photos.first?.urls?.regular == "https://example.com/regular.jpg")
     }
 }

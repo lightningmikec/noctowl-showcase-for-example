@@ -5,13 +5,14 @@
 //  Created by Michael Light Corpuz on 9/3/25.
 //
 
-import XCTest
+import Testing
+import Foundation
 @testable import light_corpuz
 
 @MainActor
-final class DashboardViewModelTests: XCTestCase {
-
-    func testLoadMore_successLoadsPhotos() async {
+struct DashboardViewModelTests {
+    @Test("loadMore loads photos successfully")
+    func loadMore_successLoadsPhotos() async {
         let repo = MockPhotosRepository()
         let fixture = TestFixtures.loadPhotosFixture(named: "photos_fixture")
         repo.resultQueue = [.success(fixture)]
@@ -19,24 +20,26 @@ final class DashboardViewModelTests: XCTestCase {
         let vm = DashboardViewModel(repo: repo)
         await vm.loadMore()
 
-        XCTAssertEqual(repo.loadNextPageCalled, 1)
-        XCTAssertEqual(vm.photos.count, fixture.count)
-        XCTAssertNil(vm.errorMessage)
+        #expect(repo.loadNextPageCalled == 1)
+        #expect(vm.photos.count == fixture.count)
+        #expect(vm.errorMessage == nil)
     }
 
-    func testLoadMore_handlesError() async {
+    @Test("loadMore handles error properly")
+    func loadMore_handlesError() async {
         let repo = MockPhotosRepository()
         repo.resultQueue = [.failure(NSError(domain: "Test", code: 1))]
         let vm = DashboardViewModel(repo: repo)
 
         await vm.loadMore()
 
-        XCTAssertEqual(repo.loadNextPageCalled, 1)
-        XCTAssertTrue(vm.photos.isEmpty)
-        XCTAssertNotNil(vm.errorMessage)
+        #expect(repo.loadNextPageCalled == 1)
+        #expect(vm.photos.isEmpty)
+        #expect(vm.errorMessage != nil)
     }
 
-    func testRefresh_resetsAndReloads() async {
+    @Test("refresh resets repo and reloads photos")
+    func refresh_resetsAndReloads() async throws {
         let repo = MockPhotosRepository()
         repo.resultQueue = [
             .success([Photo(id: "1", slug: nil, alternativeSlugs: nil,
@@ -50,13 +53,14 @@ final class DashboardViewModelTests: XCTestCase {
         let vm = DashboardViewModel(repo: repo)
 
         vm.refresh()
-        try? await Task.sleep(nanoseconds: 50_000_000)
+        try await Task.sleep(nanoseconds: 50_000_000) // give the Task a moment
 
-        XCTAssertTrue(repo.resetCalled)
-        XCTAssertEqual(repo.loadNextPageCalled, 1)
+        #expect(repo.resetCalled)
+        #expect(repo.loadNextPageCalled == 1)
     }
 
-    func testLoadMoreIfNeeded_onlyOnLastItem() async {
+    @Test("loadMoreIfNeeded triggers only on last item")
+    func loadMoreIfNeeded_onlyOnLastItem() async {
         let repo = MockPhotosRepository()
         let fixture = [
             Photo(id: "a", slug: nil, alternativeSlugs: nil,
@@ -79,13 +83,13 @@ final class DashboardViewModelTests: XCTestCase {
         let vm = DashboardViewModel(repo: repo)
         await vm.loadMore()
 
-        // Trigger with first photo: should NOT call again
+        // Not last item → no new call
         await vm.loadMoreIfNeeded(currentItem: fixture.first)
-        XCTAssertEqual(repo.loadNextPageCalled, 1)
+        #expect(repo.loadNextPageCalled == 1)
 
-        // Trigger with last photo: should call again
+        // Last item → should trigger new call
         repo.resultQueue = [.success(fixture + [fixture.first!])]
         await vm.loadMoreIfNeeded(currentItem: fixture.last)
-        XCTAssertEqual(repo.loadNextPageCalled, 2)
+        #expect(repo.loadNextPageCalled == 2)
     }
 }

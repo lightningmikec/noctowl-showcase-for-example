@@ -6,8 +6,8 @@
 //
 
 import Foundation
+import Testing
 @testable import light_corpuz
-import XCTest
 
 private final class MockService: PhotosService {
     var scripted: [Result<[Photo], Error>] = []
@@ -20,15 +20,18 @@ private final class MockService: PhotosService {
     }
 }
 
-final class DefaultPhotosRepositoryTests: XCTestCase {
-    func testLoadsFixturePhotos() async throws {
+@MainActor
+struct DefaultPhotosRepositoryTests {
+    @Test("Repository loads photos from fixture correctly")
+    func loadsFixturePhotos() async throws {
         let svc = MockService()
         let fixturePhotos = TestFixtures.loadPhotosFixture(named: "photos_fixture")
         svc.scripted = [.success(fixturePhotos)]
         let repo = DefaultPhotosRepository(service: svc, perPage: 20)
 
         let result = try await repo.loadNextPage()
-        XCTAssertEqual(result.count, fixturePhotos.count)
-        XCTAssertEqual(result.first?.user?.username, "tester")
+
+        #expect(result.count == fixturePhotos.count)
+        #expect(result.first?.user?.username == "tester")
     }
 }

@@ -19,7 +19,7 @@ final class MockPhotosRepository: PhotosRepository {
 
     func loadNextPage() async throws -> [Photo] {
         loadNextPageCalled += 1
-        try await Task.sleep(nanoseconds: 5_000_000) // simulate async
+        try await Task.sleep(nanoseconds: 5_000_000) // simulate async chuchu
         guard !resultQueue.isEmpty else { return [] }
         switch resultQueue.removeFirst() {
         case .success(let photos): return photos
