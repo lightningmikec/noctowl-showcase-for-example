@@ -1,0 +1,29 @@
+[
+    {
+        "id": "123",
+        "slug": "test-photo",
+        "created_at": "2025-08-31T14:16:46Z",
+        "updated_at": "2025-09-02T12:00:04Z",
+        "width": 3000,
+        "height": 2000,
+        "description": "A test photo",
+        "alt_description": "Alt test photo",
+        "urls": {
+            "raw": "https://example.com/raw.jpg",
+            "full": "https://example.com/full.jpg",
+            "regular": "https://example.com/regular.jpg",
+            "small": "https://example.com/small.jpg",
+            "thumb": "https://example.com/thumb.jpg"
+        },
+        "user": {
+            "id": "u1",
+            "username": "tester",
+            "name": "Test User",
+            "profile_image": {
+                "small": "https://example.com/small.jpg",
+                "medium": "https://example.com/medium.jpg",
+                "large": "https://example.com/large.jpg"
+            }
+        }
+    }
+]

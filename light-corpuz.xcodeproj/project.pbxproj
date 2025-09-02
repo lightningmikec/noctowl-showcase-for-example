@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		830332272E675F7B0004A5E9 /* PhotoDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830332252E675F7B0004A5E9 /* PhotoDecodingTests.swift */; };
+		830332292E675F860004A5E9 /* photos_fixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 830332282E675F800004A5E9 /* photos_fixture.json */; };
+		8303322B2E675FD80004A5E9 /* TestFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303322A2E675FD70004A5E9 /* TestFixtures.swift */; };
+		8303322D2E6760830004A5E9 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303322C2E6760820004A5E9 /* MockService.swift */; };
+		8303322F2E6760F20004A5E9 /* DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303322E2E6760F20004A5E9 /* DashboardViewModelTests.swift */; };
+		830332312E67612B0004A5E9 /* MockPhotosRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830332302E6761240004A5E9 /* MockPhotosRepository.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		830331292E65EAC60004A5E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,17 +36,18 @@
 		8303311A2E65EAC30004A5E9 /* light-corpuz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "light-corpuz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		830331282E65EAC60004A5E9 /* light-corpuzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "light-corpuzTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		830331322E65EAC60004A5E9 /* light-corpuzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "light-corpuzUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		830332252E675F7B0004A5E9 /* PhotoDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDecodingTests.swift; sourceTree = "<group>"; };
+		830332282E675F800004A5E9 /* photos_fixture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = photos_fixture.json; sourceTree = "<group>"; };
+		8303322A2E675FD70004A5E9 /* TestFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFixtures.swift; sourceTree = "<group>"; };
+		8303322C2E6760820004A5E9 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		8303322E2E6760F20004A5E9 /* DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelTests.swift; sourceTree = "<group>"; };
+		830332302E6761240004A5E9 /* MockPhotosRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotosRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8303311C2E65EAC30004A5E9 /* light-corpuz */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "light-corpuz";
-			sourceTree = "<group>";
-		};
-		8303312B2E65EAC60004A5E9 /* light-corpuzTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "light-corpuzTests";
 			sourceTree = "<group>";
 		};
 		830331352E65EAC60004A5E9 /* light-corpuzUITests */ = {
@@ -76,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				8303311C2E65EAC30004A5E9 /* light-corpuz */,
-				8303312B2E65EAC60004A5E9 /* light-corpuzTests */,
+				830332262E675F7B0004A5E9 /* light-corpuzTests */,
 				830331352E65EAC60004A5E9 /* light-corpuzUITests */,
 				8303311B2E65EAC30004A5E9 /* Products */,
 			);
@@ -90,6 +100,19 @@
 				830331322E65EAC60004A5E9 /* light-corpuzUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		830332262E675F7B0004A5E9 /* light-corpuzTests */ = {
+			isa = PBXGroup;
+			children = (
+				830332282E675F800004A5E9 /* photos_fixture.json */,
+				830332252E675F7B0004A5E9 /* PhotoDecodingTests.swift */,
+				830332302E6761240004A5E9 /* MockPhotosRepository.swift */,
+				8303322C2E6760820004A5E9 /* MockService.swift */,
+				8303322E2E6760F20004A5E9 /* DashboardViewModelTests.swift */,
+				8303322A2E675FD70004A5E9 /* TestFixtures.swift */,
+			);
+			path = "light-corpuzTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,9 +152,6 @@
 			);
 			dependencies = (
 				8303312A2E65EAC60004A5E9 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8303312B2E65EAC60004A5E9 /* light-corpuzTests */,
 			);
 			name = "light-corpuzTests";
 			packageProductDependencies = (
@@ -221,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830332292E675F860004A5E9 /* photos_fixture.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830332312E67612B0004A5E9 /* MockPhotosRepository.swift in Sources */,
+				8303322F2E6760F20004A5E9 /* DashboardViewModelTests.swift in Sources */,
+				830332272E675F7B0004A5E9 /* PhotoDecodingTests.swift in Sources */,
+				8303322B2E675FD80004A5E9 /* TestFixtures.swift in Sources */,
+				8303322D2E6760830004A5E9 /* MockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
