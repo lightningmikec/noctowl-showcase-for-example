@@ -9,12 +9,14 @@ import SwiftUI
 
 struct PictureView: View {
     let post: Photo
+    var onImageTap: (() -> Void)? = nil
     
     var body: some View {
         if let urlString = post.urls?.regular,
            let url = URL(string: urlString) {
 
             SquareRemoteImage(url: url)
+                .onTapGesture { onImageTap?() }  
 
         } else {
             Color.gray.opacity(0.2)
