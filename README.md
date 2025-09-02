@@ -1,7 +1,23 @@
-# 📸 light-corpuz's (Exam Project)
+# 📸 light-corpuz (Exam Project)
 
 An iOS sample project built as part of a technical exam.  
 The app demonstrates fetching and displaying photos from a public API (Unsplash), with modern SwiftUI architecture, infinite scroll, pull-to-refresh, navigation, and testing.
+
+---
+
+## ✅ Requirements Checklist
+
+| Requirement                                | Status |
+|--------------------------------------------|--------|
+| Display photos in a list/grid (UICollectionView) | ✅ (SwiftUI feed + UICollectionView demo in Profile tab) |
+| Show extra info (title, author, date, etc.) | ✅ |
+| Pull-to-refresh                            | ✅ |
+| Infinite scroll / pagination               | ✅ |
+| Use any architecture (MVC/MVVM/MVP)        | ✅ (MVVM) |
+| Use any library (optional)                 | ✅ (All native SwiftUI/Combine) |
+| Navigation bar / bottom navigation         | ✅ (NavigationStack + TabView) |
+| Unit tests                                 | ✅ (Swift Testing) |
+| GitHub repo                                | ✅ |
 
 ---
 
@@ -104,5 +120,5 @@ Tests included:
 
 ## 👤 Author
 
-Michael Allan "Light" Corpuz  
-[@lightningowltech](https://github.com/lightningmikec)
+Michael Light Corpuz  
+[@lightningowl](https://github.com/your-username)
