@@ -28,7 +28,7 @@ struct RootView: View {
 
             // Profile
             NavigationStack {
-                EmptyView()
+                CreditsView()
             }
             .tabItem {
                 Label("Profile", systemImage: "person.fill")
