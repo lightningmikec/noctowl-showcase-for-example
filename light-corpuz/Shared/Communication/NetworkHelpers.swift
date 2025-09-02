@@ -23,30 +23,3 @@ enum NetworkError: Error, LocalizedError {
         }
     }
 }
-
-extension JSONDecoder {
-    static let unsplash: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        // Unsplash dates can include fractional seconds; support both.
-        decoder.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let raw = try container.decode(String.self)
-            
-            // Try with fractional seconds first
-            let isoFrac = ISO8601DateFormatter()
-            isoFrac.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            
-            if let d = isoFrac.date(from: raw) { return d }
-            
-            let iso = ISO8601DateFormatter()
-            iso.formatOptions = [.withInternetDateTime]
-            if let d = iso.date(from: raw) { return d }
-            
-            // If all else fails
-            throw DecodingError.dataCorruptedError(in: container,
-                                                   debugDescription: "Invalid ISO8601 date: \(raw)")
-        }
-        return decoder
-    }()
-}

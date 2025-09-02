@@ -20,7 +20,6 @@ struct UnsplashPhotosService: PhotosService {
             throw NetworkError.badURL
         }
         comps.queryItems = [
-            .init(name: "client_id", value: clientID),
             .init(name: "page", value: String(page)),
             .init(name: "per_page", value: String(perPage))
         ]
@@ -28,17 +27,23 @@ struct UnsplashPhotosService: PhotosService {
         guard let url = comps.url else { throw NetworkError.badURL }
         
         var request = URLRequest(url: url)
-        // Optional but recommended by Unsplash:
-        request.setValue("v1", forHTTPHeaderField: "Accept-Version")
         // If you prefer header auth instead of query param:
-        // request.setValue("Client-ID \(clientID)", forHTTPHeaderField: "Authorization")
+        request.setValue("Client-ID \(clientID)", forHTTPHeaderField: "Authorization")
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             let status = (response as? HTTPURLResponse)?.statusCode ?? 0
             guard (200..<300).contains(status) else { throw NetworkError.badStatus(status) }
             do {
-                return try JSONDecoder.unsplash.decode([Photo].self, from: data)
+                print("====================================")
+                // 🔎 Raw JSON string
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print(jsonString)
+                } else {
+                    print("⚠️ Could not decode data into UTF-8 string")
+                }
+                print("====================================")
+                return try JSONDecoder().decode([Photo].self, from: data)
             } catch {
                 throw NetworkError.decoding(error)
             }

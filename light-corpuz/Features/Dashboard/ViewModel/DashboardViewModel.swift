@@ -37,6 +37,7 @@ final class DashboardViewModel: ObservableObject {
             let all = try await repo.loadNextPage()
             photos = all
             print("[source] - success \(photos.count)")
+            print("[source] - \(photos)")
         } catch {
             errorMessage = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
             print("[source] - error \(errorMessage)")
