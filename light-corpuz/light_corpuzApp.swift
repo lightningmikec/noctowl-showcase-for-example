@@ -11,7 +11,7 @@ import SwiftUI
 struct light_corpuzApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PreviewHelper.dashboard()
         }
     }
 }

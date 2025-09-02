@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DashboardView: View {
     
-    let viewModel: DashboardViewModel
+    @ObservedObject var viewModel: DashboardViewModel
     
     var body: some View {
         ScrollView {
@@ -20,6 +20,9 @@ struct DashboardView: View {
         .refreshable {
             // todo refrsh action
         }
+        .task {
+            await viewModel.loadMore()
+        }
         
         // todo fetch data
     }
@@ -29,9 +32,9 @@ struct DashboardView: View {
             Color(.red)
                 .frame(width: 100, height: 100)
             VStack {
-                Text(photo.name)
+                Text(photo.id ?? "")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(photo.image)
+                Text(photo.slug ?? "")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
@@ -39,6 +42,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    let viewModel = DashboardViewModel()
-    DashboardView(viewModel: viewModel)
+    PreviewHelper.dashboard()
 }
