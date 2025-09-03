@@ -5,7 +5,6 @@
 //  Created by Michael Light Corpuz on 9/2/25.
 //
 
-import Kingfisher
 import SwiftUI
 
 struct DashboardView: View {
